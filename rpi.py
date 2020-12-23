@@ -17,7 +17,10 @@ command=sys.argv[1]
 token=""
 
 for i in range(2, len(sys.argv)):
-    token+="\"" + sys.argv[i] + "\""
+    if " " in sys.argv[i]:
+        token+="\"" + sys.argv[i] + "\""
+    else:
+        token+= sys.argv[i] 
     token+=" "
 
 

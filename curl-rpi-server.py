@@ -64,6 +64,7 @@ def curl():
     '''
     request_json=request.get_json()
     curlarg = request_json.get("args")
+
     print("get curl request: curl " + curlarg)
     #returncode=os.system("cd " + CURLDIR + "&&" + "curl " + curlarg + "-O;")
 
