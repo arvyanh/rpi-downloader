@@ -35,10 +35,10 @@ def youtube_dl():
     request_json=request.get_json()
     args = request_json.get("args")
 
-    print("get youtube_dl request: youtube_dl " + args)
+    print("get youtube-dl request: youtube-dl " + args)
     #returncode=os.system("cd " + CURLDIR + "&&" + "curl " + curlarg + "-O;")
 
-    thread=Thread(target = sysThread, args = ("cd " + CURLDIR + "&&" + "youtube_dl " + args + ";",))
+    thread=Thread(target = sysThread, args = ("cd " + CURLDIR + "&&" + "youtube-dl " + args + ";",))
     thread.start()      #unjoined thread?
     return js.dumps({"return":0})
 
