@@ -24,6 +24,25 @@ def shellThread(array):
 def sysThread(string):
     os.system(string)
 
+
+@app.route("/youtube-dl", methods=["POST"])
+def youtube_dl():
+    '''
+    post request format: {args=" "}
+
+    downloads to curldir
+    '''
+    request_json=request.get_json()
+    args = request_json.get("args")
+
+    print("get youtube_dl request: youtube_dl " + args)
+    #returncode=os.system("cd " + CURLDIR + "&&" + "curl " + curlarg + "-O;")
+
+    thread=Thread(target = sysThread, args = ("cd " + CURLDIR + "&&" + "youtube_dl " + args + ";",))
+    thread.start()      #unjoined thread?
+    return js.dumps({"return":0})
+
+
 @app.route("/curl/ls", methods=["GET"])
 def curl_ls():
     out=subprocess.run(['ls', '/home/pi/.curlDown'], stdout=subprocess.PIPE)

@@ -35,6 +35,32 @@ if command=="curl":
     else:
         print(ret.json()['return'])
 
+
+if command=="youtube-dl":
+    print("requesting curl " + token)
+    # send curl request to server
+    ret = req.post(SERVERADDR+"/youtube-dl", json={"args":token}, headers=HEADERS_POST)
+
+    # wait for server returns
+    if ret.json()['return']==0:
+        print("success")
+    else:
+        print(ret.json()['return'])
+
+
+
+if command=="wget":
+    print("requesting wget " + token)
+    # send curl request to server
+    ret = req.post(SERVERADDR+"/wget", json={"args":token}, headers=HEADERS_POST)
+
+    # wait for server returns
+    if ret.json()['return']==0:
+        print("success")
+    else:
+        print(ret.json()['return'])
+
+
 elif command=="rmall":
     req.post(SERVERADDR+"/curl/rmall", headers=HEADERS_POST)
 
@@ -51,3 +77,4 @@ elif command=="cmd":
         token+=" "
     ret = req.get(SERVERADDR+"/cmd", params={"args":token, "cmd":cmd})
     print(ret.json()['return'])
+
